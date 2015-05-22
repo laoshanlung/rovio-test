@@ -1,7 +1,6 @@
 define([
-  'underscore'
-  , 'angular'
-], function(_, angular){
+  'angular'
+], function(angular){
   var apis = angular.module('apis', []);
 
   var prefix = '/api';

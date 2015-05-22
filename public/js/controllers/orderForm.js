@@ -1,7 +1,6 @@
 define([
-  'underscore'
-  , 'app'
-], function(_, app){
+  'app'
+], function(app){
 
   function OrderFormController($window, $timeout, $rootScope, $scope, PizzaFactory) {
     $scope.ingredients = [];
