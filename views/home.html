@@ -10,9 +10,9 @@
 				Dough
 			</label>
 			<select ng-model="selectedDough">
-				<option value="{{ d.name }}" ng-repeat="(index, d) in dough">
+				<option class="js-dough" value="{{ d.name }}" ng-repeat="(index, d) in dough">
 					{{ d.name }}
-				</option>		
+				</option>
 			</select>
 		</div>
 		<label>
