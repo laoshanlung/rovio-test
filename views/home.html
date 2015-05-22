@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% raw %}
+<div ng-cloak ng-controller="OrderFormController as controller">
+	<h1>Create new order</h1>
+	<form>
+		<div class="form-group">
+			<label>
+				Dough
+			</label>
+			<select ng-model="selectedDough">
+				<option value="{{ d.name }}" ng-repeat="(index, d) in dough">
+					{{ d.name }}
+				</option>		
+			</select>
+		</div>
+		<label>
+			Ingredients
+		</label>
+	  <div class="checkbox" ng-repeat="(index, ingredient) in ingredients">
+	    <label>
+	      <input type="checkbox"
+	      	ng-checked="selectedIngredients.indexOf(ingredient.name) > -1" 
+	      	ng-click="onChangeIngredient(ingredient.name)"> {{ ingredient.name }}
+	    </label>
+	  </div>
+	  <button type="button" class="btn btn-primary" ng-click="onSubmit()">Submit</button>
+	</form>
+</div>
+{% endraw %}
+{% endblock %}
