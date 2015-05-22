@@ -1,7 +1,7 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   baseUrl: 'http://localhost:4000',
-  specs: ['scenarios.js'],
+  specs: ['public/js/test/e2e/*.js'],
 
   onPrepare: function() {
     browser.manage().timeouts().pageLoadTimeout(40000);
