@@ -81,11 +81,6 @@ app.get('/', function(req, res){
   res.render('home.html');
 });
 
-app.get('/my-orders', function(req, res){
-  res.locals.jsModule = 'orders';
-  res.render('orders.html');
-});
-
 app.use(function(req, res, next){
   res.jsonData = function(data) {
     res.json({data: data});

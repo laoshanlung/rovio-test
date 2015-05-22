@@ -3,7 +3,7 @@ define([
   , 'app'
 ], function(_, app){
 
-  function OrderFormController($window, $timeout, $scope, PizzaFactory) {
+  function OrderFormController($window, $timeout, $rootScope, $scope, PizzaFactory) {
     $scope.ingredients = [];
     $scope.dough = [];
 
@@ -38,6 +38,7 @@ define([
         ingredients: $scope.selectedIngredients,
         dough: $scope.selectedDough
       }).$promise.then(function(){
+        $rootScope.$emit('newOrder');
         reset();
         $window.alert('Your order has been submitted');
       });
@@ -46,5 +47,5 @@ define([
     }
   }
 
-  app.controller('OrderFormController', ['$window', '$timeout', '$scope', 'PizzaFactory', OrderFormController]);
+  app.controller('OrderFormController', ['$window', '$timeout', '$rootScope', '$scope', 'PizzaFactory', OrderFormController]);
 });

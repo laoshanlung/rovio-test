@@ -3,14 +3,27 @@ define([
   , 'app'
 ], function(_, app){
 
-  function OrderReportController($window, $timeout, $scope, PizzaFactory) {
+  function OrderReportController($window, $timeout, $rootScope, $scope, PizzaFactory) {
     $scope.orders = [];
-    $timeout(function(){
+
+    var getOrders = function(reset) {
       PizzaFactory.getOrders().$promise.then(function(reponse){
-        $scope.orders = $scope.orders.concat(reponse.data);
+        if (reset) {
+          $scope.orders = reponse.data;
+        } else {
+          $scope.orders = $scope.orders.concat(reponse.data);
+        }
       });
+    }
+
+    $timeout(function(){
+      getOrders();
+    });
+
+    $rootScope.$on('newOrder', function(){
+      getOrders(true);
     });
   }
 
-  app.controller('OrderReportController', ['$window', '$timeout', '$scope', 'PizzaFactory', OrderReportController]);
+  app.controller('OrderReportController', ['$window', '$timeout', '$rootScope', '$scope', 'PizzaFactory', OrderReportController]);
 });
