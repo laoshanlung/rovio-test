@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-karma');
   
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -14,6 +15,12 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
     env: {
       test: {
         NODE_ENV: 'test'
@@ -21,5 +28,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('test', ['env:test', 'mochaTest:unit']);
+  grunt.registerTask('test', ['env:test', 'mochaTest:unit', 'karma:unit']);
 }
